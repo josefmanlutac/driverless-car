@@ -6,13 +6,13 @@
 ## Instructions
 1. opencv is needed
 
-runs both object detection and video recorder
+#runs both object detection and video recorder
 `python3 real_time_object_detection_new.py --prototxt MobileNetSSD_deploy.prototxt.txt --model MobileNetSSD_deploy.caffemodel & python3 record_video.py`
 
-runs only object detection
+#runs only object detection
 `python3 real_time_object_detection_new.py --prototxt MobileNetSSD_deploy.prototxt.txt --model MobileNetSSD_deploy.caffemodel`
 
-runs only video recorder
+#runs only video recorder
 `python3 record_video.py`
 
-on GUI window press `q` to quit - stop object detection first and recording second
+#on GUI window press `q` to quit - stop object detection first and recording second
