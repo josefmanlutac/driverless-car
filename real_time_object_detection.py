@@ -47,7 +47,9 @@ fps = FPS().start()
 pframe_time = time.time()
 
 #initialise array
-data_array = []
+stop_time = []
+det_obj = []
+conf = []
 
 #open csv file
 f = open('data.csv', 'w')
@@ -97,9 +99,11 @@ while True:
 			y = startY - 15 if startY - 15 > 15 else startY + 15
 			cv2.putText(frame, label, (startX, y),
 				cv2.FONT_HERSHEY_SIMPLEX, 0.5, COLORS[idx], 2)
-			if confidence >= 0.999 and CLASSES[idx] == "person":
-				print(confidence, current_time, "stop")
-				data_array.append(str(current_time))
+			if confidence >= 0.999:
+				print(round(confidence,3), current_time, CLASSES[idx], "car needs to stop")
+				stop_time.append(str(current_time))
+				det_obj.append(str(CLASSES[idx]))
+				conf.append(str(round(confidence,3)))
 				
 
 	# show the output frame
@@ -113,7 +117,7 @@ while True:
 	# update the FPS counter
 	fps.update()
 
-csvwrite.writerows(([str(k)] for k in data_array))
+csvwrite.writerows(zip(stop_time, det_obj, conf))
 f.close()
 
 # stop the timer and display FPS information
